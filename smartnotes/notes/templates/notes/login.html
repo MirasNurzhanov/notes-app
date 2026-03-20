@@ -1,0 +1,17 @@
+{% extends "notes/base.html" %}
+
+{% block body %}
+
+  <h1>Login Form:</h1>
+  <form action="{% url 'login'%}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="username" name="username">
+    <input type="text" placeholder="password" name="password">
+    <button type="submit">Login</button>
+    <a href="{% url 'register' %}">Register</a>
+  </form>
+  {% if message %}
+    {{ message }}
+  {% endif %}
+
+{% endblock %}

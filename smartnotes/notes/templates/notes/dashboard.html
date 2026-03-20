@@ -1,0 +1,46 @@
+{% extends "notes/base.html" %}
+
+{% block body %}
+
+<h1>{{request.user}}'s Dashboard</h1>
+
+
+Add Note
+
+<form id="note-form"  method="post">
+    {% csrf_token %}
+    <input type="text" id="title" name="title">
+    <textarea id="content" name="content"></textarea>
+
+    <button type="submit">Create</button>
+</form>
+
+
+Pinned Notes
+
+<div id="pinned-notes">
+</div>
+
+
+All Notes
+
+<div id="all-notes">
+    {% for note in notes %}
+
+        <div class="note" data-id="{{ note.id }}">
+
+            <h3>{{ note.title }}</h3>
+
+            <p>{{ note.content }}</p>
+
+            <a href="{% url 'update_note' note.id %}">Edit</a>
+            <a id="delete_btn" href="{% url 'delete_note' note.id %}">Delete</a>
+            <h3 id="delete_message"></h3>
+
+        </div>
+
+    {% endfor %}
+</div>
+
+<a href="{% url 'logout'%}"
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "notes/base.html %}
+
+{% block body %}
+  <h1>Edit Form:</h1>
+  <form id="note-change-form" action="{% url 'update_note' %}" method="post">
+    {% csrf_token %}
+    <input id="title" type="text" name="title" placeholder="New Title">
+    <input id="content" type="text" name="content" placeholder="New Content">
+    <button type="submit">Submit</button>
+  </form>
+  <h3 id="message"></h3>
+{% endblock %}
