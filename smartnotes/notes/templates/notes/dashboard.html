@@ -14,7 +14,7 @@ Add Note
 
     <button type="submit">Create</button>
 </form>
-
+     
 
 Pinned Notes
 
@@ -34,13 +34,13 @@ All Notes
             <p>{{ note.content }}</p>
 
             <a href="{% url 'update_note' note.id %}">Edit</a>
-            <a id="delete_btn" href="{% url 'delete_note' note.id %}">Delete</a>
-            <h3 id="delete_message"></h3>
+            <button class="delete-btn">Delete</button>
+            
 
         </div>
 
     {% endfor %}
 </div>
 
-<a href="{% url 'logout'%}"
+<a href="{% url 'logout' %}">Logout</a>
 {% endblock %}

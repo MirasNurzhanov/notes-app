@@ -8,7 +8,7 @@ urlpatterns = [
     path("logout/" , views.logout_view , name="logout") , 
     path("dashboard/" , views.dashboard, name="dashboard"), 
     path("api/add_note/" , views.add_note , name="add_note"), 
-    path("api/delete_note/" , views.delete_note , name="delete_note"),
+    path("delete_note/<int:note_id>/", views.delete_note, name="delete_note"),
     path("update_note/<int:note_id>/", views.update_note, name="update_note"),
     path("api/toggle_pin/" , views.toggle_pin , name="toogle_pin")
 ]

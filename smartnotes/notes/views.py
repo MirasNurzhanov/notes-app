@@ -48,14 +48,14 @@ def register_view(request):
             login(request, user)
             return redirect("dashboard")
         
-        except InteGrityError:
+        except IntegrityError:
             return render(request, "register.html", {
                 "message": "Username already taken.."
             })
     return render(request, "notes/register.html")
 
 def logout_view(request):
-    logout(request, user)
+    logout(request)
     return redirect("login")
 
 def dashboard(request):
