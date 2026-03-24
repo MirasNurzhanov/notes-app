@@ -1,8 +1,8 @@
-{% extends "notes/base.html %}
+{% extends "notes/base.html" %}
 
 {% block body %}
   <h1>Edit Form:</h1>
-  <form id="note-change-form" data-id="{{ note.id }}"></form>
+  <form id="note-change-form" data-id="{{ note_id }}">
     {% csrf_token %}
     <input id="title" type="text" name="title" placeholder="New Title">
     <input id="content" type="text" name="content" placeholder="New Content">

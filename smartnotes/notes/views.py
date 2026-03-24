@@ -106,8 +106,12 @@ def update_note(request , note_id):
         note.content = data["new_content"]
         note.save()
         return JsonResponse({"message": "Note updated successfuly!"})
-    return render(request, "edit_note.html")
+    return render(request, "notes/edit_note.html" , {
+        "note_id": note_id
+    })
 
 
 def toggle_pin(request):
-    pass
+    pass   
+
+    

@@ -1,5 +1,6 @@
 console.log("JS is working")
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // Regular Notes Variables:
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const message = document.querySelector("#message")
 
             const noteId = change_form.dataset.id
+            console.log("Note ID:", noteId)
 
             const response = await fetch(`/notes/update_note/${noteId}/`, {
                 method: "POST",
