@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const notes_container = document.querySelector("#all-notes")
     const my_form = document.querySelector("#note-form")
     const change_form = document.querySelector("#note-change-form")
-    const csrf = document.querySelector("[name=csrfmiddlewaretoken]")?.value
+    const csrf = document.querySelector("[name=csrfmiddlewaretoken]").value
+    const searchInput = document.querySelector("#search")
 
     // ---------------- CREATE NOTE ----------------
     if (my_form) {
@@ -49,9 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
             note.innerHTML = `
                 <h3>${data.title}</h3>
                 <p>${data.content}</p>
+                <a href="/notes/update_note/${data.id}/">Edit</a>
                 <button class="delete-btn">Delete</button>
             `
-
+            console.log("CREATING NOTE:", data)
             notes_container.appendChild(note)
 
             my_form.reset()
@@ -118,6 +120,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 noteElement.remove()
                 console.log(data.message)
             }
+        })
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("input" , async (e) => {
+            const query = e.target.value
+            const response = await fetch(`/notes/search_note?q=${query}`) 
+            const data = await response.json()
+            notes_container.innerHTML = ""
+
+            data.forEach(note => {
+            const noteDiv = document.createElement("div")
+            noteDiv.classList.add("note")
+            noteDiv.dataset.id = note.id
+
+            noteDiv.innerHTML = `
+                <h3>${note.title}</h3>
+                <p>${note.content}</p>
+                <a href="notes/update_note/${note.id}/">Edit</a>
+                <button class="delete-btn">Delete</button>
+            `
+
+            notes_container.appendChild(noteDiv)
+            })
         })
     }
 })

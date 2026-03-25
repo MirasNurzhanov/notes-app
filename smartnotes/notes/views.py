@@ -115,3 +115,37 @@ def toggle_pin(request):
     pass   
 
     
+def search_note(request):
+    query = request.GET.get("q", "")
+
+    if query:
+        notes = Note.objects.filter(
+            user=request.user
+        ).filter(
+            title__icontains=query
+        ) | Note.objects.filter(
+            user=request.user,
+            content__icontains=query
+        )
+    else:
+        notes = Note.objects.filter(user=request.user)
+
+    data = [
+        {
+            "id": note.id,
+            "title": note.title,
+            "content": note.content
+        }
+        for note in notes
+    ]
+
+    return JsonResponse(data, safe=False)
+
+    """
+    for note in notes:
+        data.append({
+           "id": note.id,
+           "title": note.title,
+           "content": note.content
+                              })
+    """

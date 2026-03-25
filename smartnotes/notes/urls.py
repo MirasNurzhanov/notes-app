@@ -10,5 +10,6 @@ urlpatterns = [
     path("api/add_note/" , views.add_note , name="add_note"), 
     path("delete_note/<int:note_id>/", views.delete_note, name="delete_note"),
     path("update_note/<int:note_id>/", views.update_note, name="update_note"),
-    path("api/toggle_pin/" , views.toggle_pin , name="toogle_pin")
-]
+    path("api/toggle_pin/" , views.toggle_pin , name="toogle_pin"),
+    path("search_note/" , views.search_note , name="search_note")
+] 
